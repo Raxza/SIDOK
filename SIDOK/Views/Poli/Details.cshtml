@@ -1,0 +1,65 @@
+﻿@model SIDOK.Core.Models.PoliForDetails
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PoliForDetails</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nama)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nama)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Lokasi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lokasi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<div>
+    <hr />
+    <h3>Daftar Jaga Dokter</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nama
+                </th>
+                <th>
+                    Spesialisasi
+                </th>
+                <th>
+                    Hari
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Dokters)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nama)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Spesialisasi.Nama)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hari)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

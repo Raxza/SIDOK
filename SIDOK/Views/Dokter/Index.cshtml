@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SIDOK.Core.Models.Dokter>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Dokter</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tanggal_Lahir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tempat_Lahir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jenis_Kelamin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spesialisasi.Nama)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Nama)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tanggal_Lahir)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tempat_Lahir)
+                </td>
+                <td>
+                    @if (item.Jenis_Kelamin == 1)
+                    {
+                        <span>Laki-laki</span>
+                    } else
+                    {
+                        <span>Perempuan</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spesialisasi.Nama)
+                </td>
+                <td>
+                    <a asp-action="CreateJadwalJaga" asp-route-id="@item.Id">Tambah Jadwal Jaga</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

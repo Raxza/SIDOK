@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SIDOK.Core.Models.Dokter>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Cari Dokter</h1>
+
+<form asp-action="Search">
+    <div class="form-group">
+        <label class="control-label">Spesialisasi</label>
+        @Html.DropDownList("Id_Spesialisasi", new SelectList(ViewBag.spesialisasi, "Id", "Nama"), "Pilih Spesialisasi", new { @class="form-control"})
+    </div>
+    <div class="form-group">
+        <label class="control-label">Poli</label>
+        @Html.DropDownList("Id_Poli", new SelectList(ViewBag.poli, "Id", "Nama"), "Pilih Poli", new { @class="form-control"})
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tanggal_Lahir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tempat_Lahir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jenis_Kelamin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spesialisasi.Nama)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nama)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tanggal_Lahir)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tempat_Lahir)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jenis_Kelamin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spesialisasi.Nama)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

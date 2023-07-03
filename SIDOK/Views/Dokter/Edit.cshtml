@@ -1,0 +1,64 @@
+﻿@model SIDOK.Core.Models.Dokter
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Dokter</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nama" class="control-label"></label>
+                <input asp-for="Nama" class="form-control" />
+                <span asp-validation-for="Nama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nip" class="control-label"></label>
+                <input asp-for="Nip" class="form-control" readonly/>
+                <span asp-validation-for="Nip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nik" class="control-label"></label>
+                <input asp-for="Nik" class="form-control" readonly/>
+                <span asp-validation-for="Nik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tanggal_Lahir" class="control-label"></label>
+                <input asp-for="Tanggal_Lahir" class="form-control" />
+                <span asp-validation-for="Tanggal_Lahir" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tempat_Lahir" class="control-label"></label>
+                <input asp-for="Tempat_Lahir" class="form-control" />
+                <span asp-validation-for="Tempat_Lahir" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Jenis_Kelamin" class="control-label"></label>
+                @*<input asp-for="Jenis_Kelamin" class="form-control" />*@
+                @Html.DropDownList("Jenis_Kelamin", @ViewBag.gender as List<SelectListItem>, "Pilih Jenis Kelamin", new { @class="form-control" })
+                <span asp-validation-for="Jenis_Kelamin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Spesialisasi</label>
+                @Html.DropDownListFor(dokter => dokter.Spesialisasi.Id, new SelectList(ViewBag.spesialisasi, "Id", "Nama"), "Pilih Spesialisasi", new { @class="form-control"})
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
